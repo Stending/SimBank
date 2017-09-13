@@ -1,11 +1,6 @@
 #include "WaitingQueue.h"	
 
 
-
-deque<Customer> _customers;
-		int _maxLength;
-		double _averageLength;
-		double _averageWaitingTime;
 		
 WaitingQueue::WaitingQueue(int maxLength, averageWaitingTime){
 	_maxLength = maxLength;
@@ -16,22 +11,23 @@ WaitingQueue::~WaitingQueue(){
 
 }
 
-int WaitingQueue::maxLength(){
+int WaitingQueue::maxLength() const{
 	return _maxLength;
 }
 
-double WaitingQueue::averageLength(){
+double WaitingQueue::averageLength() const{
 	return _averageLength;
 }
-double WaitingQueue::averageWaitingTime(){
+double WaitingQueue::averageWaitingTime() const{
 	retun _averageWaitingTime;
 }
+bool WaitingQueue::isEmpty() const{
+	return _customers.empty();
+}
+
 void WaitingQueue::add(Customer customer){
 	_customers.push_front(customer);
 }
 Customer WaitingQueue::remove(){
 	return _customers.pop_back();
-}
-bool WaitingQueue::isEmpty(){
-	return _customers.empty();
 }

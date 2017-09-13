@@ -17,12 +17,12 @@ class WaitingQueue{
 	public:
 		WaitingQueue(int, double);
 		~WaitingQueue();
-		int maxLength();
-		double averageLength();
-		double averageWaitingTime();
+		int maxLength() const;
+		double averageLength()const;
+		double averageWaitingTime() const;
+		bool isEmpty() const;
 		void add(Customer);
 		Customer remove();
-		bool isEmpty();
 
 };
 
