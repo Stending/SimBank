@@ -1,21 +1,24 @@
 #include "Cashier.h"
 
-		/*double _averageServiceTime;
-		Customer _currentCustomer;
-		double _occupationRate;
-		Bank* _bank;*/
-
 void Cashie::Cashier(double averageServiceTime, Bank *bank){
 	_averageServiceTime = averageServiceTime;
 	_bank = bank;
 }
 
-double Cashier::averageServiceTime(){
+double Cashier::averageServiceTime() const{
 	return _averageServiceTime;
 }
 
-double Cashier::occupationRate(){
+double Cashier::occupationRate() const{
 	return _occupationRate;
+}
+
+bool Cashier::isFree() const{
+	return _currentCustomer == NULL;
+}
+
+Bank* Cashier::bank() const{
+	return _bank;
 }
 
 void Cashier::serve(Customer){
@@ -26,10 +29,4 @@ void Cashier::wait(){
 
 }
 
-bool Cashier::isFree(){
-	return _currentCustomer == NULL;
-}
 
-Bank* Cashier::bank(){
-
-}

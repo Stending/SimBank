@@ -10,12 +10,12 @@ class Cashier{
 		Bank* _bank;
 	public:
 		Cashier(double, Bank);
-		double averageServiceTime();
-		double occupationRate();
+		double averageServiceTime() const;
+		double occupationRate()const;
+		bool isFree() const;
+		Bank* bank() const;
 		void serve(Customer);
 		void wait();
-		bool isFree();
-		Bank* bank();
 };
 
 #endif
