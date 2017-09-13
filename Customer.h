@@ -8,7 +8,7 @@ class Customer
 
     public :
         Customer(double _arrivalTime);
-        double arrivalTime();
+        double arrivalTime() const;
 };
 
 #endif
