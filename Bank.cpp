@@ -12,7 +12,7 @@ double Bank::averageArrivalTime() const
 
 Cashier Bank::freeCashier() const
 {
-
+    return NULL;
 }
 
 double Bank::providedTime() const
