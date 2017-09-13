@@ -1,6 +1,6 @@
 #include "Cashier.h"
 
-void Cashie::Cashier(double averageServiceTime, Bank *bank){
+Cashier::Cashier(double averageServiceTime, Bank *bank){
 	_averageServiceTime = averageServiceTime;
 	_bank = bank;
 }
@@ -22,11 +22,11 @@ Bank* Cashier::bank() const{
 }
 
 void Cashier::serve(Customer){
-
+ 	//TODO
 }
 
 void Cashier::wait(){
-
+	//TODO
 }
 
 

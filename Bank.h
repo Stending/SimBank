@@ -4,13 +4,15 @@
 #include "Cashier.h"
 #include "Simulation.h"
 
+class Cashier; //Permet de dire que Cashier existe avant que le code soit inclus.
+
 class Bank : public Simulation
 {
     protected :
         double _averageArrivalTime;
         double _providedTime;
         int _customersNbr;
-        Cashier *cashiers;
+        Cashier* _cashiers;
         double _realTime;
         int _cashiersNbr;
 

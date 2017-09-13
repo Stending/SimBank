@@ -2,7 +2,7 @@
 
 
 		
-WaitingQueue::WaitingQueue(int maxLength, averageWaitingTime){
+WaitingQueue::WaitingQueue(int maxLength, double averageWaitingTime){
 	_maxLength = maxLength;
 	_averageWaitingTime = averageWaitingTime;
 }
@@ -19,7 +19,7 @@ double WaitingQueue::averageLength() const{
 	return _averageLength;
 }
 double WaitingQueue::averageWaitingTime() const{
-	retun _averageWaitingTime;
+	return _averageWaitingTime;
 }
 bool WaitingQueue::isEmpty() const{
 	return _customers.empty();
@@ -29,5 +29,7 @@ void WaitingQueue::add(Customer customer){
 	_customers.push_front(customer);
 }
 Customer WaitingQueue::remove(){
-	return _customers.pop_back();
+	Customer c = _customers.back();
+	_customers.pop_back();
+	return c;
 }

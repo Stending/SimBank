@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <deque>
-#include "customer.h"
+#include "Customer.h"
 using namespace std;
 
 
