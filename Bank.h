@@ -2,8 +2,9 @@
 #define BANK_H
 
 #include "Cashier.h"
+#include "Simulation.h"
 
-class Bank : public simulation
+class Bank : public Simulation
 {
     protected :
         double _averageArrivalTime;
