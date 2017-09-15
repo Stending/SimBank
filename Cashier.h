@@ -2,9 +2,11 @@
 #define CASHIER_H
 #include "Customer.h"
 #include "Bank.h"
+#include "Release.h"
 #include <cstddef>
 
 class Bank; //Permet de dire que Bank existe avant que le code soit inclus.
+class Release;
 
 class Cashier{
 	protected:

@@ -4,7 +4,9 @@
 #include "Cashier.h"
 #include "Simulation.h"
 #include "WaitingQueue.h"
+#include "Arrive.h"
 
+class Arrive;
 class Cashier; //Permet de dire que Cashier existe avant que le code soit inclus.
 
 class Bank : public Simulation
@@ -18,7 +20,6 @@ class Bank : public Simulation
         double _realTime;
         int _cashiersNbr;
 		int _currentCashiersNbr;
-
     public :
         //TODO : Gérer les Temps de services différents pour chaque caissier.
         Bank(double _averageArrivalTime, double _providedTime, int _cashiersNbr);
@@ -31,6 +32,7 @@ class Bank : public Simulation
         int customersNbr() const;
         double realTime() const;
         int cashiersNbr() const;
+		Customer* nextCustomer();
         ~Bank();
 };
 

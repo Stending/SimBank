@@ -3,13 +3,15 @@
 
 
 #include "Event.h"
+#include "Cashier.h"
+class Cashier;
 
 class Release : public Event{
 
 	protected:
 		Cashier* _cashier;
 	public:
-		Release();
+		Release(Cashier*, double);
 		void process();
 };
 

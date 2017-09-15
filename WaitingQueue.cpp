@@ -29,7 +29,9 @@ void WaitingQueue::add(Customer* customer){
 	_customers.push_back(customer);
 }
 Customer* WaitingQueue::remove(){
-	Customer* c = _customers.front();
-	_customers.pop_front();
-	return c;
+	if(!_customers.empty()){
+		Customer* c = _customers.front();
+		_customers.pop_front();
+		return c;
+	}
 }

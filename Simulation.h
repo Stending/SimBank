@@ -10,7 +10,7 @@ class Simulation
     public :
 		Simulation();
     	void execute();
-    	void add(Event *evt);
+    	void addEvent(Event *evt);
     	double time();
 };
 

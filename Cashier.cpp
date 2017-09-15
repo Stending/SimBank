@@ -26,12 +26,22 @@ void Cashier::serve(Customer* c){
 	double serviceEnd = _bank->realTime() + serviceTime;
 
 	_currentCustomer = c;
-	//Release r(this, serviceEnd);
-	//bank->AddEvent(&r);
+	cout << this << "On s'occupe du client " << c << " et on sera libre au temps " << serviceEnd << endl;
+	Release r(this, serviceEnd);
+	_bank->addEvent(&r);
 }
 
 void Cashier::wait(){
-	//TODO
+	delete _currentCustomer;
+	
+	Customer* nextCustomer = _bank->nextCustomer();
+
+	if(nextCustomer){
+		serve(nextCustomer);
+	}else{
+		_currentCustomer = NULL;
+	}
+	
 }
 
 

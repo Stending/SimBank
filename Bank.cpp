@@ -8,6 +8,14 @@ Bank::Bank(double averageArrivalTime, double providedTime, int cashiersNbr):_wai
 	_cashiersNbr = cashiersNbr;
 	_cashiers = new Cashier*[cashiersNbr];
 	_currentCashiersNbr = 0;
+
+	for (int i=0;i<cashiersNbr;i++){
+		_cashiers[i] = new Cashier(10, this);
+	}
+
+	double timeBeforeNextCustomer = _averageArrivalTime; //TODO loi de Poisson;
+	double nextCustomerTime = _time + timeBeforeNextCustomer;
+	//Arrive arrive(this, nextCustomerTime);
 }
 
 double Bank::averageArrivalTime() const
@@ -23,7 +31,6 @@ Cashier Bank::freeCashier() const
 
 WaitingQueue& Bank::waitingQueue(){
 	return _waitingQueue;
-
 }
 
 void Bank::addCashier(Cashier& c){
@@ -52,6 +59,10 @@ double Bank::realTime() const
 int Bank::cashiersNbr() const
 {
     return _cashiersNbr;
+}
+
+Customer* Bank::nextCustomer(){
+	return _waitingQueue.remove();
 }
 
 Bank::~Bank()

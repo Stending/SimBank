@@ -3,6 +3,7 @@
 
 #include "Event.h"
 
+class Bank;
 class Arrive : public Event{
 
 	protected:
