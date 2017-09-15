@@ -1,6 +1,7 @@
 #include "Release.h"
 
-Release::Release(Cashier* cashier, double time){
+Release::Release(Cashier* cashier, double time) : Event(time)
+{
 	_cashier = cashier;
 	_time = time;
 }

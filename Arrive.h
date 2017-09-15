@@ -9,7 +9,7 @@ class Arrive : public Event{
 	protected:
 		Bank* _bank;
 	public:
-		Arrive();
+		Arrive(Bank *_bank, double _time);
 		void process();
 };
 

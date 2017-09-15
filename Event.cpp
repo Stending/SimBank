@@ -1,8 +1,11 @@
 #include "Event.h"
 
-Event::Event(){
+Event::Event(double _time)
+{
+    (*this)._time = _time;
 }
 
-double Event::time(){
+double Event::time()
+{
 	return _time;
 }

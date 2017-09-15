@@ -27,7 +27,7 @@ class Bank : public Simulation
 		double averageArrivalTime() const;
 		void addCashier(Cashier&);
 		void addCashier(double);
-        Cashier freeCashier() const;
+        Cashier* freeCashier() const;
         double providedTime() const;
         int customersNbr() const;
         double realTime() const;

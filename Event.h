@@ -8,7 +8,7 @@ class Event
 	protected :
 		double _time;
 	public :
-		Event();
+		Event(double _time);
 		double time();
 		virtual void process() = 0;
 };

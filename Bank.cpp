@@ -23,10 +23,15 @@ double Bank::averageArrivalTime() const
     return _averageArrivalTime;
 }
 
-Cashier Bank::freeCashier() const
+Cashier* Bank::freeCashier() const
 {
-	//TODO
-	return **_cashiers; //retourne le tout premier caissier (à changer)
+	for(int i = 0; i < _cashiersNbr; i++)
+    {
+        if(_cashiers[i] != NULL && (*_cashiers[i]).isFree())
+            return _cashiers[i];
+    }
+
+	return NULL;
 }
 
 WaitingQueue& Bank::waitingQueue(){
@@ -67,5 +72,5 @@ Customer* Bank::nextCustomer(){
 
 Bank::~Bank()
 {
-	
+
 }
