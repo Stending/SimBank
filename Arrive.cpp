@@ -1,9 +1,11 @@
 #include "Arrive.h"
 
-Arrive::Arrive(){
+Arrive::Arrive()
+{
 
 }
 
-void Arrive::process(){
+void Arrive::process()
+{
 
 }
