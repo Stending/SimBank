@@ -22,7 +22,7 @@ class Bank : public Simulation
     public :
         //TODO : Gérer les Temps de services différents pour chaque caissier.
         Bank(double _averageArrivalTime, double _providedTime, int _cashiersNbr);
-	  	WaitingQueue& waitingQueue() const;
+//	  	WaitingQueue& waitingQueue();
 		double averageArrivalTime() const;
 		void addCashier(Cashier&);
 		void addCashier(double);

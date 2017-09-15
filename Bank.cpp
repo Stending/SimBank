@@ -1,12 +1,12 @@
 #include "Bank.h"
 
 
-Bank::Bank(double _averageArrivalTime, double _providedTime, int _cashiersNbr)
+Bank::Bank(double averageArrivalTime, double providedTime, int cashiersNbr):_waitingQueue(10,20) //en dur pour le moment, à changer
 {
-	this->_averageArrivalTime = _averageArrivalTime;
-	this->_providedTime = _providedTime;
-	this->_cashiersNbr = _cashiersNbr;
-	_cashiers = new *Cashier[_cashiersNbr];
+	_averageArrivalTime = averageArrivalTime;
+	_providedTime = providedTime;
+	_cashiersNbr = cashiersNbr;
+	_cashiers = new Cashier*[cashiersNbr];
 	_currentCashiersNbr = 0;
 }
 
@@ -18,13 +18,13 @@ double Bank::averageArrivalTime() const
 Cashier Bank::freeCashier() const
 {
 	//TODO
-	return *_cashiers;
+	return **_cashiers; //retourne le tout premier caissier (à changer)
 }
 
-WaitingQueue& Bank::waitingQueue() const{
+/*WaitingQueue& Bank::waitingQueue() const{
 	return _waitingQueue;
 
-}
+}*/
 
 void Bank::addCashier(Cashier& c){
 	_cashiers[_currentCashiersNbr] = &c;
