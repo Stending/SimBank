@@ -18,7 +18,7 @@ class Cashier{
 		double occupationRate()const;
 		bool isFree() const;
 		Bank* bank() const;
-		void serve(Customer);
+		void serve(Customer*);
 		void wait();
 };
 

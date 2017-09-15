@@ -21,8 +21,13 @@ Bank* Cashier::bank() const{
 	return _bank;
 }
 
-void Cashier::serve(Customer){
- 	//TODO
+void Cashier::serve(Customer* c){
+	double serviceTime = _averageServiceTime; 	//TODO utiliser Poisson pour générer une durée
+	double serviceEnd = _bank->realTime() + serviceTime;
+
+	_currentCustomer = c;
+	//Release r(this, serviceEnd);
+	//bank->AddEvent(&r);
 }
 
 void Cashier::wait(){

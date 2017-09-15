@@ -6,7 +6,14 @@ Simulation::Simulation(){
 }
 
 void Simulation::execute(){
+	if(!_eventQueue.empty()){
+		Event* e = _eventQueue.firstEvent();
+		_eventQueue.removeFirstEvent();	
 
+		e->process();
+
+		execute();
+	}
 }
 
 void Simulation::add(Event *evt){

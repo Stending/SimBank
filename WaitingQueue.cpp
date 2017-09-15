@@ -25,11 +25,11 @@ bool WaitingQueue::isEmpty() const{
 	return _customers.empty();
 }
 
-void WaitingQueue::add(Customer customer){
-	_customers.push_front(customer);
+void WaitingQueue::add(Customer* customer){
+	_customers.push_back(customer);
 }
-Customer WaitingQueue::remove(){
-	Customer c = _customers.back();
-	_customers.pop_back();
+Customer* WaitingQueue::remove(){
+	Customer* c = _customers.front();
+	_customers.pop_front();
 	return c;
 }

@@ -5,6 +5,8 @@
 
 class Arrive : public Event{
 
+	protected:
+		Bank* _bank;
 	public:
 		Arrive();
 		void process();

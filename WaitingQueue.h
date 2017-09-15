@@ -9,7 +9,7 @@ using namespace std;
 
 class WaitingQueue{
 	protected:
-		deque<Customer> _customers;
+		deque<Customer*> _customers;
 		int _maxLength;
 		double _averageLength;
 		double _averageWaitingTime;
@@ -21,9 +21,8 @@ class WaitingQueue{
 		double averageLength()const;
 		double averageWaitingTime() const;
 		bool isEmpty() const;
-		void add(Customer);
-		Customer remove();
-
+		void add(Customer*);
+		Customer* remove();
 };
 
 #endif

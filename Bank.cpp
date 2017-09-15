@@ -21,10 +21,10 @@ Cashier Bank::freeCashier() const
 	return **_cashiers; //retourne le tout premier caissier (à changer)
 }
 
-/*WaitingQueue& Bank::waitingQueue() const{
+WaitingQueue& Bank::waitingQueue(){
 	return _waitingQueue;
 
-}*/
+}
 
 void Bank::addCashier(Cashier& c){
 	_cashiers[_currentCashiersNbr] = &c;

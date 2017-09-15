@@ -6,6 +6,8 @@
 
 class Release : public Event{
 
+	protected:
+		Cashier* _cashier;
 	public:
 		Release();
 		void process();
