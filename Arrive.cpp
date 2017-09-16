@@ -9,6 +9,8 @@ Arrive::Arrive(Bank *_bank, double _time) : Event(_time)
 
 void Arrive::process()
 {
+    cout << "On est dans Arrive.process()" << endl;
+
     double nextTime;
 
     if((*_bank).freeCashier() == NULL)
@@ -17,7 +19,7 @@ void Arrive::process()
         (*(*_bank).freeCashier()).serve(new Customer((*_bank).time()));
 
     //TODO vérifier que l'on ne dépasse pas le temps total de simulation
-	
+
 	double nextCustomerIn = Poisson::next((*_bank).averageArrivalTime());
 	cout << "Le prochain client arrivera dans " << nextCustomerIn << endl;
 	cout << "La bank est au temps t = " << (*_bank).time() << endl;

@@ -7,6 +7,7 @@ Release::Release(Cashier* cashier, double time) : Event(time)
 }
 
 void Release::process(){
+    cout << "On est dans Release.process()" << endl;
 	cout << "Le caissier " << _cashier << " est libéré" << endl;
 	_cashier->wait();
 }
