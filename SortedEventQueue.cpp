@@ -1,24 +1,28 @@
 #include "SortedEventQueue.h"
 
-SortedEventQueue::SortedEventQueue(){
-	
+SortedEventQueue::SortedEventQueue()
+{
 }
 
-void SortedEventQueue::addEvent(Event* e){
-	
-	if(_queue.empty()){
+void SortedEventQueue::addEvent(Event* e)
+{
+	if(_queue.empty())
+	{
 		_queue.push_front(e);
-	}else{
+	}
+	else
+	{
 		std::deque<Event*>::iterator it;
-		for (it=_queue.begin(); it!=_queue.end(); ++it){
-	    	if(e->time() < (*it)->time()){
-				it--;
+
+		for (it=_queue.begin(); it!=_queue.end(); it++)
+		{
+	    	if(e->time() < (*it)->time())
+	    	{
 				_queue.insert(it, e);
 				break;
 			}
-		}		
+		}
 	}
-
 }
 
 Event* SortedEventQueue::firstEvent(){
