@@ -27,8 +27,8 @@ void Cashier::serve(Customer* c){
 
 	_currentCustomer = c;
 	cout << this << "On s'occupe du client " << c << " et on sera libre au temps " << serviceEnd << endl;
-	Release r(this, serviceEnd);
-	_bank->addEvent(&r);
+	Release *r = new Release(this, serviceEnd);
+	_bank->addEvent(r);
 }
 
 void Cashier::wait(){

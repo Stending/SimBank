@@ -16,6 +16,7 @@ class SortedEventQueue {
 		Event* firstEvent();
 		void removeFirstEvent();
 		bool empty();
+		int size();
 		void printEvents();
 		
 

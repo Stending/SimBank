@@ -13,9 +13,14 @@ Bank::Bank(double averageArrivalTime, double providedTime, int cashiersNbr):_wai
 		_cashiers[i] = new Cashier(10, this);
 	}
 
+	cout << "La banque est crée" << endl;
 	double timeBeforeNextCustomer = _averageArrivalTime; //TODO loi de Poisson;
 	double nextCustomerTime = _time + timeBeforeNextCustomer;
-	//Arrive arrive(this, nextCustomerTime);
+	cout << "Le premier client arrivera à " << nextCustomerTime << endl;
+	Arrive* arrive = new Arrive(this, nextCustomerTime);
+	addEvent(arrive);
+	cout << "L'event Arrive dit qu'un client arrivera à " << arrive->time() << endl;
+	cout << "Il reste " << _eventQueue.size() << " à dérouler." << endl;
 }
 
 double Bank::averageArrivalTime() const

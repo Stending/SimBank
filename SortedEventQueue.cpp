@@ -6,13 +6,16 @@ SortedEventQueue::SortedEventQueue(){
 
 void SortedEventQueue::addEvent(Event* e){
 	
-
-	std::deque<Event*>::iterator it;
-	for (it=_queue.begin(); it!=_queue.end(); ++it){
-    	if(e->time() < (*it)->time()){
-			it--;
-			_queue.insert(it, e);
-			break;
+	if(_queue.empty()){
+		_queue.push_front(e);
+	}else{
+		std::deque<Event*>::iterator it;
+		for (it=_queue.begin(); it!=_queue.end(); ++it){
+	    	if(e->time() < (*it)->time()){
+				it--;
+				_queue.insert(it, e);
+				break;
+			}
 		}		
 	}
 
@@ -28,6 +31,10 @@ void SortedEventQueue::removeFirstEvent(){
 
 bool SortedEventQueue::empty(){
 	return _queue.empty();
+}
+
+int SortedEventQueue::size(){
+	return _queue.size();
 }
 
 void SortedEventQueue::printEvents(){
