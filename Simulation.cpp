@@ -9,7 +9,7 @@ void Simulation::execute(){
 	if(!_eventQueue.empty()){
 		cout << "On traite un événement :" << endl;
 		Event* e = _eventQueue.firstEvent();
-		_eventQueue.removeFirstEvent();	
+		_eventQueue.removeFirstEvent();
 		cout << "L'evenement à lieu au temps t = " << e->time() << endl;
 
 		_time = e->time();
@@ -29,5 +29,5 @@ void Simulation::addEvent(Event *evt){
 }
 
 double Simulation::time(){
-	return 0;
+	return _time;
 }
