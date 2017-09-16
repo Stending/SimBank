@@ -9,9 +9,9 @@ class Simulation
 		SortedEventQueue _eventQueue;
     public :
 		Simulation();
-    	void execute();
+    	virtual void execute() = 0;
     	void addEvent(Event *evt);
-    	double time();
+    	double time() const;
 };
 
 #endif

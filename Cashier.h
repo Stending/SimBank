@@ -14,6 +14,7 @@ class Cashier{
 		Customer* _currentCustomer;
 		double _occupationRate;
 		Bank* _bank;
+		bool _isFree;
 	public:
 		Cashier(double, Bank*);
 		double averageServiceTime() const;

@@ -75,6 +75,25 @@ Customer* Bank::nextCustomer(){
 	return _waitingQueue.remove();
 }
 
+void Bank::execute()
+{
+	if(!_eventQueue.empty())
+	{
+		Event* e = _eventQueue.firstEvent();
+		_eventQueue.removeFirstEvent();
+		_time = e->time();
+
+		cout << "L'évènement, de type " << (*e).eventType() << ", à lieu au temps t = " << (*e).time() << endl;
+
+		(*e).process();
+		execute();
+
+		//cout << "Il reste " << _eventQueue.size() << " évènement(s) à dérouler." << endl;
+
+		delete e;
+	}
+}
+
 Bank::~Bank()
 {
 

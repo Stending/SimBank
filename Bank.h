@@ -33,6 +33,7 @@ class Bank : public Simulation
         double realTime() const;
         int cashiersNbr() const;
 		Customer* nextCustomer();
+		void execute();
         ~Bank();
 };
 

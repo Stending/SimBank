@@ -1,7 +1,7 @@
-#include "WaitingQueue.h"	
+#include "WaitingQueue.h"
 
 
-		
+
 WaitingQueue::WaitingQueue(int maxLength, double averageWaitingTime){
 	_maxLength = maxLength;
 	_averageWaitingTime = averageWaitingTime;
@@ -34,4 +34,6 @@ Customer* WaitingQueue::remove(){
 		_customers.pop_front();
 		return c;
 	}
+
+	return NULL;
 }

@@ -4,6 +4,9 @@
 
 #include "Event.h"
 #include "Cashier.h"
+
+#include <string>
+
 class Cashier;
 
 class Release : public Event{
@@ -12,6 +15,7 @@ class Release : public Event{
 		Cashier* _cashier;
 	public:
 		Release(Cashier*, double);
+		std::string eventType();
 		void process();
 };
 

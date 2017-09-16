@@ -6,6 +6,8 @@ SortedEventQueue::SortedEventQueue()
 
 void SortedEventQueue::addEvent(Event* e)
 {
+    bool notAdded = true;
+
 	if(_queue.empty())
 	{
 		_queue.push_front(e);
@@ -18,9 +20,15 @@ void SortedEventQueue::addEvent(Event* e)
 		{
 	    	if(e->time() < (*it)->time())
 	    	{
+                notAdded = false;
 				_queue.insert(it, e);
 				break;
 			}
+		}
+
+		if(notAdded)
+		{
+            _queue.push_back(e);
 		}
 	}
 }
