@@ -23,8 +23,8 @@ Bank* Cashier::bank() const{
 
 void Cashier::serve(Customer* c){
 	double serviceTime = _averageServiceTime; 	//TODO utiliser Poisson pour générer une durée
-	double serviceEnd = _bank->realTime() + serviceTime;
-
+	double serviceEnd = _bank->time() + serviceTime;
+	cout << "Au même ou le client sert, il voit que la bank est à t = " << _bank->time() << endl;
 	_currentCustomer = c;
 	cout << this << "On s'occupe du client " << c << " et on sera libre au temps " << serviceEnd << endl;
 	Release *r = new Release(this, serviceEnd);

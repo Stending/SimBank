@@ -15,7 +15,7 @@ void Simulation::execute(){
 		_time = e->time();
 		cout << "Il est actuellement t = " << _time << endl;
 		e->process();
-
+		cout << "Il reste " << _eventQueue.size() << " à dérouler." << endl;
 		execute();
 	}
 
