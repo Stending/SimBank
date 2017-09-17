@@ -10,11 +10,6 @@ Bank::Bank(double averageArrivalTime, double providedTime, int cashiersNbr) : _w
 	_currentCashiersNbr = 0;
 	_customersNbr = 0;
 
-	for(int i = 0; i < cashiersNbr; i++)
-	{
-		_cashiers[i] = new Cashier(10, this);
-	}
-
 	double nextTime = Poisson::next(_averageArrivalTime);
 	Arrive* arrive = new Arrive(this, nextTime);
 	addEvent(arrive);
@@ -52,7 +47,9 @@ void Bank::addCashier(double averageServiceTime)
         _currentCashiersNbr++;
     }
     else
+    {
         cout << "La banque ne dispose pas de fonds suffisant pour embaucher un nouvel employé" << endl;
+    }
 }
 
 double Bank::providedTime() const

@@ -69,6 +69,8 @@ void Cashier::wait()
     //TODO gérer le temps d'attente du client pris dans la file d'attente + la longueure moyenne de la file
 	if(nextCustomer)
 	{
+        (*_bank).waitingQueue().decrCurrentLength((*_bank).time());
+        (*_bank).waitingQueue().increaseWaitingTime((*_bank).time()-(*nextCustomer).arrivalTime());
         serve(nextCustomer);
 	}
 	else

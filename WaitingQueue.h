@@ -1,28 +1,41 @@
 #ifndef WAITINGQUEUE_H
 #define WAITINGQUEUE_H
 
+#include "Customer.h"
+
 #include <iostream>
 #include <deque>
-#include "Customer.h"
+
 using namespace std;
 
+class WaitingQueue
+{
+	protected :
 
-class WaitingQueue{
-	protected:
-		deque<Customer*> _customers;
 		int _maxLength;
+		int _currentLength;
 		double _averageLength;
+		double _lastModifTime;
 		double _averageWaitingTime;
+		deque<Customer*> _customers;
 
-	public:
+	public :
+
 		WaitingQueue();
-		~WaitingQueue();
+
+		bool isEmpty() const;
 		int maxLength() const;
+        int currentLength() const;
 		double averageLength()const;
 		double averageWaitingTime() const;
-		bool isEmpty() const;
-		void add(Customer*);
+
 		Customer* remove();
+		void add(Customer*);
+		void incrCurrentLength(double time);
+        void decrCurrentLength(double time);
+        void increaseWaitingTime(double time);
+
+		~WaitingQueue();
 };
 
 #endif

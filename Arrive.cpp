@@ -12,7 +12,10 @@ void Arrive::process()
     double nextTime;
 
     if((*_bank).freeCashier() == NULL)
+    {
+        ((*_bank).waitingQueue()).incrCurrentLength((*_bank).time());
         ((*_bank).waitingQueue()).add(new Customer((*_bank).time()));
+    }
     else
         (*(*_bank).freeCashier()).serve(new Customer((*_bank).time()));
 
