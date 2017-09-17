@@ -1,26 +1,25 @@
+#include "Poisson.h"
 #include "Bank.h"
 
-
-Bank::Bank(double averageArrivalTime, double providedTime, int cashiersNbr):_waitingQueue(10,20) //en dur pour le moment, à changer
+Bank::Bank(double averageArrivalTime, double providedTime, int cashiersNbr) : _waitingQueue()
 {
 	_averageArrivalTime = averageArrivalTime;
+	_cashiers = new Cashier*[cashiersNbr];
 	_providedTime = providedTime;
 	_cashiersNbr = cashiersNbr;
-	_cashiers = new Cashier*[cashiersNbr];
 	_currentCashiersNbr = 0;
+	_customersNbr = 0;
 
-	for (int i=0;i<cashiersNbr;i++){
+	for(int i = 0; i < cashiersNbr; i++)
+	{
 		_cashiers[i] = new Cashier(10, this);
 	}
 
-	cout << "La banque est crée" << endl;
-	double timeBeforeNextCustomer = _averageArrivalTime; //TODO loi de Poisson;
-	double nextCustomerTime = _time + timeBeforeNextCustomer;
-	cout << "Le premier client arrivera à " << nextCustomerTime << endl;
-	Arrive* arrive = new Arrive(this, nextCustomerTime);
+	double nextTime = Poisson::next(_averageArrivalTime);
+	Arrive* arrive = new Arrive(this, nextTime);
 	addEvent(arrive);
-	cout << "L'event Arrive dit qu'un client arrivera à " << arrive->time() << endl;
-	cout << "Il reste " << _eventQueue.size() << " à dérouler." << endl;
+
+	cout << "Le premier client arrivera à " << nextTime << endl;
 }
 
 double Bank::averageArrivalTime() const
@@ -39,16 +38,21 @@ Cashier* Bank::freeCashier() const
 	return NULL;
 }
 
-WaitingQueue& Bank::waitingQueue(){
+WaitingQueue& Bank::waitingQueue()
+{
 	return _waitingQueue;
 }
 
-void Bank::addCashier(Cashier& c){
-	_cashiers[_currentCashiersNbr] = &c;
-}
-void Bank::addCashier(double averageServiceTime){
-	Cashier c(averageServiceTime, this);
-	addCashier(c);
+void Bank::addCashier(double averageServiceTime)
+{
+    if(_currentCashiersNbr < _cashiersNbr)
+    {
+        _cashiers[_currentCashiersNbr] = new Cashier(averageServiceTime, this);
+
+        _currentCashiersNbr++;
+    }
+    else
+        cout << "La banque ne dispose pas de fonds suffisant pour embaucher un nouvel employé" << endl;
 }
 
 double Bank::providedTime() const
@@ -71,7 +75,8 @@ int Bank::cashiersNbr() const
     return _cashiersNbr;
 }
 
-Customer* Bank::nextCustomer(){
+Customer* Bank::nextCustomer()
+{
 	return _waitingQueue.remove();
 }
 
@@ -88,13 +93,28 @@ void Bank::execute()
 		(*e).process();
 		execute();
 
-		//cout << "Il reste " << _eventQueue.size() << " évènement(s) à dérouler." << endl;
-
 		delete e;
 	}
+	else
+	{
+        _realTime = _time;
+	}
+}
+
+void Bank::incrCustomers()
+{
+    _customersNbr++;
 }
 
 Bank::~Bank()
 {
+    for(int i = 0; i < _cashiersNbr; i++)
+        delete _cashiers[i];
 
+    delete[] _cashiers;
+}
+
+Cashier &Bank::iemeCashier(int i)
+{
+    return *_cashiers[i];
 }

@@ -1,54 +1,79 @@
 #include "Cashier.h"
+#include "Poisson.h"
 
-Cashier::Cashier(double averageServiceTime, Bank *bank){
+Cashier::Cashier(double averageServiceTime, Bank *bank)
+{
 	_averageServiceTime = averageServiceTime;
 	_bank = bank;
+
+    _occupationTime = 0;
+    _customersNbr = 0;
 	_isFree = true;
 }
 
-double Cashier::averageServiceTime() const{
+double Cashier::occupationTime() const
+{
+    return _occupationTime;
+}
+
+double Cashier::averageServiceTime() const
+{
 	return _averageServiceTime;
 }
 
-double Cashier::occupationRate() const{
+double Cashier::occupationRate() const
+{
 	return _occupationRate;
 }
 
-bool Cashier::isFree() const{
+bool Cashier::isFree() const
+{
 	return _isFree;
 }
 
-Bank* Cashier::bank() const{
+Bank* Cashier::bank() const
+{
 	return _bank;
 }
 
-void Cashier::serve(Customer* c){
-	double serviceTime = _averageServiceTime; 	//TODO utiliser Poisson pour générer une durée
-	double serviceEnd = _bank->time() + serviceTime;
-	cout << "Au même ou le client sert, il voit que la bank est à t = " << _bank->time() << endl;
-	_currentCustomer = c;
-	_isFree = false;
-	cout << this << "On s'occupe du client " << c << " et on sera libre au temps " << serviceEnd << endl;
-	Release *r = new Release(this, serviceEnd);
-	_bank->addEvent(r);
+int Cashier::customersNbr() const
+{
+    return _customersNbr;
 }
 
-void Cashier::wait(){
+void Cashier::serve(Customer* c)
+{
+    double serviceTime = Poisson::next(_averageServiceTime);
+	double serviceEnd = (*_bank).time() + serviceTime;
+
+    _isFree = false;
+    _customersNbr++;
+    _currentCustomer = c;
+    (*_bank).incrCustomers();
+	_occupationTime += serviceTime;
+	_occupationRate = _occupationTime / (*_bank).time();
+
+	Release *r = new Release(this, serviceEnd);
+	(*_bank).addEvent(r);
+
+	cout << "Le service commence au temps t = " << (*_bank).time() << " et finira au temps t = " << serviceEnd << endl;
+}
+
+void Cashier::wait()
+{
     delete _currentCustomer;
 
 
 	Customer* nextCustomer = _bank->nextCustomer();
 
-	if(nextCustomer){
-	cout << "Quelqu'un dans la file" << endl;
-		serve(nextCustomer);
-	}else{
-
-	cout << "Personne dans la file dans la file" << endl;
+    //TODO gérer le temps d'attente du client pris dans la file d'attente + la longueure moyenne de la file
+	if(nextCustomer)
+	{
+        serve(nextCustomer);
+	}
+	else
+	{
 		_currentCustomer = NULL;
 		_isFree = true;
 	}
-
 }
-
-

@@ -13,9 +13,9 @@ class WaitingQueue{
 		int _maxLength;
 		double _averageLength;
 		double _averageWaitingTime;
-		
+
 	public:
-		WaitingQueue(int, double);
+		WaitingQueue();
 		~WaitingQueue();
 		int maxLength() const;
 		double averageLength()const;
