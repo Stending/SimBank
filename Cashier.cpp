@@ -51,7 +51,7 @@ void Cashier::serve(Customer* c)
     _currentCustomer = c;
     (*_bank).incrCustomers();
 	_occupationTime += serviceTime;
-	_occupationRate = _occupationTime / (*_bank).time();
+	_occupationRate = _occupationTime / ((*_bank).time() + serviceTime);
 
 	Release *r = new Release(this, serviceEnd);
 	(*_bank).addEvent(r);

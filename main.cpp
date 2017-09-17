@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 	for(int i = 0; i < 5; i++)
 	{
         cout << "Le caissier " << i+1 << " a servi " << bank.iemeCashier(i).customersNbr()
-        << " clients pour un taux d'occupation de " << bank.iemeCashier(i).occupationRate()<< "%" << endl;
+        << " clients pour un taux d'occupation de " << bank.iemeCashier(i).occupationRate()*100<< "%" << endl;
 	}
 	cout << "########################################################################" << endl;
 }
