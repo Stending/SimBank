@@ -48,7 +48,7 @@ void Bank::addCashier(double averageServiceTime)
     }
     else
     {
-        cout << "La banque ne dispose pas de fonds suffisant pour embaucher un nouvel employé" << endl;
+        cout << "La banque ne dispose pas de fonds suffisants pour embaucher un nouvel employé" << endl;
     }
 }
 

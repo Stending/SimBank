@@ -13,23 +13,20 @@ class Cashier; //Permet de dire que Cashier existe avant que le code soit inclus
 class Bank : public Simulation
 {
     protected :
-
+	WaitingQueue _waitingQueue;
         Cashier** _cashiers;
-
-		WaitingQueue _waitingQueue;
-        double _averageArrivalTime;
+	int _cashiersNbr;
         int _currentCashiersNbr;
+        double _averageArrivalTime;
         double _providedTime;
         int _customersNbr;
         double _realTime;
-        int _cashiersNbr;
+        
 
     public :
 
-        //TODO : Gérer les Temps de services différents pour chaque caissier.
         Bank(double _averageArrivalTime, double _providedTime, int _cashiersNbr);
-
-	  	double averageArrivalTime() const;
+	double averageArrivalTime() const;
         WaitingQueue& waitingQueue();
         Cashier* freeCashier() const;
         double providedTime() const;
@@ -38,10 +35,10 @@ class Bank : public Simulation
         double realTime() const;
         int cashiersNbr() const;
 
-		Customer* nextCustomer();
-		void addCashier(double);
-		void incrCustomers();
-		void execute();
+	Customer* nextCustomer();
+	void addCashier(double);
+	void incrCustomers();
+	void execute();
 
         ~Bank();
 };
